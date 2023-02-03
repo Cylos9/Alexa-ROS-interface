@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<launch>
+    <arg name="locations_config_file" default="$(find alexa_ros_interface)/config/house_locations.yaml"/>
+    
+    
+    <rosparam command="load" file="$(arg locations_config_file)"/>
+    
+    <node name="alexa_interface" pkg="alexa_ros_interface" type="alexa_interface.py"  output="screen" respawn="false">
+    </node>
+
+</launch>

@@ -119,6 +119,4 @@ def createMyTurtlebot():
     
 if __name__ == '__main__':
    threading.Thread(target=createMyTurtlebot).start()
-   
    app.run()
-   

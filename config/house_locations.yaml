@@ -1,0 +1,18 @@
+house_locations:
+  # reference coordinate frame
+  frame_id: "map"
+  # room locations
+  living_room:
+    name: "living room"
+    position: [1.78, -0.34]
+    orientation: [0.0, 0.0, 0.0]
+
+  bedroom:
+    name: "bedroom"
+    position: [0.1, 1.6]
+    orientation: [0.0, 0.0, 0.0]
+
+  kitchen:
+    name: "kitchen"
+    position: [-0.8, -1.8]
+    orientation: [0.0, 0.0, 0.0]

@@ -22,8 +22,7 @@ class MyTurtlebot:
         
         #create a list of pre-defined location 
         self._locations = self._createLocationList()
-        
-        
+
     def moveTo(self,location_cmd):
         
         try:
@@ -65,16 +64,23 @@ class MyTurtlebot:
         return goal_msg
 
     def _createLocationList(self):
+        #get locations from Parameter server
+        locations_dicts = rospy.get_param("/house_locations")
         
-        locations = {}
+        #get and remove frame_id from locations_dicts
+        frame_id = locations_dicts.pop("frame_id")
         
-        locations['living room'] = self._createGoalMessage([1.78,-0.34],[0.0,0.0,0.0])
-        locations['bedroom'] = self._createGoalMessage([0.1,1.6],[0.0,0.0,0.0])
-        locations['kitchen'] = self._createGoalMessage([-0.8,-1.8],[0.0,0.0,0.0])
-        #get param from parameter server
-        
-        
-        return locations
+        if frame_id == "map":
+            locations_keys = list(locations_dicts.keys())
+            
+            locations_for_cmd = {}
+            
+            #create a location list with move_base_msgs/MoveBaseGoal
+            for location_key in locations_keys:
+                location = locations_dicts[location_key]
+                locations_for_cmd[location["name"]] = self._createGoalMessage(location["position"],location["orientation"])
+            
+        return locations_for_cmd
 
     def _odom_callback(self,data):
         
