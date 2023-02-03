@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>alexa_ros_interface</name>
+  <version>1.0.0</version>
+  <description>The alexa_ros_interface package use Alexa Skill Kits SDK and move_base ActionServer to establish communication between Alexa and Turtlebot3 </description>
+
+  <maintainer email="bobdbl99@gmail.com">cylos</maintainer>
+
+  <license>MIT License</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  
+</package>
