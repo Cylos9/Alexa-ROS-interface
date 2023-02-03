@@ -6,6 +6,7 @@ import geometry_msgs.msg
 import move_base_msgs.msg
 import tf,tf_conversions
 from nav_msgs.msg import Odometry
+import sys
 
 class MyTurtlebot:
     def __init__(self):
@@ -79,7 +80,15 @@ class MyTurtlebot:
             for location_key in locations_keys:
                 location = locations_dicts[location_key]
                 locations_for_cmd[location["name"]] = self._createGoalMessage(location["position"],location["orientation"])
+        
+        else:
+            rospy.logfatal("Your locations list was loaded with frame_id ='{}' ! Please change to 'odom' frame!".format(frame_id))
+            rospy.logfatal("Node is forcelly terminated!")
+            # force program to be terminated
+            rospy.signal_shutdown("Wrong frame_id !")
             
+            return 0
+                   
         return locations_for_cmd
 
     def _odom_callback(self,data):
