@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 from flask import Flask
+from flask_ngrok import run_with_ngrok
 from ask_sdk_core.skill_builder import SkillBuilder
 from flask_ask_sdk.skill_adapter import SkillAdapter
 
@@ -10,11 +11,15 @@ from ask_sdk_core.handler_input import HandlerInput
 from ask_sdk_model import Response
 from ask_sdk_model.ui import SimpleCard
 
-from my_turtlebot.my_turtlebot import MyTurtlebot
+from alexa_ros_interface.my_turtlebot import MyTurtlebot
+from alexa_ros_interface.integrate_ngrok import create_app
 import rospy
 import threading
 
-app = Flask(__name__)
+# create `app` with ngrok setting
+# Run os.environ["USE_NGROK"]="True" to disable Ngrok
+
+app = create_app()
 
 class LaunchRequestHandler(AbstractRequestHandler):
     def can_handle(self, handler_input):
@@ -118,5 +123,7 @@ def createMyTurtlebot():
     rospy.spin()
     
 if __name__ == '__main__':
+   
    threading.Thread(target=createMyTurtlebot).start()
+   
    app.run()

@@ -6,7 +6,6 @@ import geometry_msgs.msg
 import move_base_msgs.msg
 import tf,tf_conversions
 from nav_msgs.msg import Odometry
-import sys
 
 class MyTurtlebot:
     def __init__(self):
