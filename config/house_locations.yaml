@@ -1,18 +1,56 @@
-house_locations:
-  # reference coordinate frame
+house_map:
+  #reference coordinate frame
   frame_id: "map"
-  # room locations
-  living_room:
-    name: "living room"
-    position: [1.78, -0.34]
-    orientation: [0.0, 0.0, 0.0]
+  locations:
+    # room locations
+    living_room:
+      name: "living room"
+      position: [1.78, -0.34]
+      orientation: [0.0, 0.0, 0.0]
 
-  bedroom:
-    name: "bedroom"
-    position: [0.1, 1.6]
-    orientation: [0.0, 0.0, 0.0]
+    bedroom:
+      name: "bedroom"
+      position: [0.1, 1.6]
+      orientation: [0.0, 0.0, 0.0]
 
-  kitchen:
-    name: "kitchen"
-    position: [-0.8, -1.8]
-    orientation: [0.0, 0.0, 0.0]
+    toilet:
+      name: "toilet"
+      position: [1.02, 3.024]
+      orientation: [0.0, 0.0, 0.0]
+
+  areas:
+    office_room: 
+      name: "office room"
+      area: 
+        x: [-7.347, -5.406] # [x_min,x_max]
+        y: [-3.86, 5.356] # [y_min,y_max]
+
+    living_room: 
+      name: "living room"
+      area:
+        x: [-5.029, -0.182 ]
+        y: [-0.131, 5.313 ] 
+
+    foyer: 
+      name: "foyer"
+      area:
+        x: [-0.095 , 2.174]
+        y: [-0.135 , 0.856]          
+
+    dining_room: 
+      name: "dining room"
+      area: 
+        x: [2.264 , 7.265]
+        y: [-0.301 , 5.069]         
+
+    toilet: 
+      name: "toilet"
+      area:
+        x: [-0.015 , 2.184]
+        y: [0.852 , 5.149]         
+
+    bedroom: 
+      name: "bedroom"
+      area:
+        x: [7.137 , 4.774]
+        y: [-5.448 , -0.465]  
