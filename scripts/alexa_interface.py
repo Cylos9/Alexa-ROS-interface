@@ -66,9 +66,9 @@ class GetPositionIntentHandler(AbstractRequestHandler):
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
         
-        position = my_turtlebot.getPosition()
+        location = my_turtlebot.getRobotLocation()
         
-        speech_text = "I am located at coordinates {:06.1f},{:06.1f}".format(position[0],position[1])
+        speech_text = "I'm in {} now !!".format(location)
         
         handler_input.response_builder.speak(speech_text).set_card(
             SimpleCard("My position", speech_text)).set_should_end_session(
