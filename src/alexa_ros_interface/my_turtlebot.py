@@ -13,11 +13,23 @@ class MyTurtlebot:
     def __init__(self, disable_signals=False):
 
         # class member
-        self._position = [0, 0]
+        self._position = []
         self._locationList = {}
         self._areaList = {}
         self._goalList = {}
-
+        self._statusList = {
+            "0": "PENDING",
+            "1": "ACTIVE",
+            "2": "PREEMPTED",
+            "3": "SUCCEEDED",
+            "4": "ABORTED",
+            "5": "REJECTED",
+            "6": "PREEMPTING",
+            "7": "RECALLING",
+            "8": "RECALLED",
+            "9": "LOST"
+        }
+        self._lastGoal = ""
         # Init ROS node
         rospy.init_node('alexa_interface', disable_signals=disable_signals)
 
@@ -35,13 +47,11 @@ class MyTurtlebot:
         rospy.sleep(1)
 
         # create Subscriber to get current position
-        rospy.Subscriber("odom", Odometry, self._odom_callback)
-
+        rospy.Subscriber("odom", Odometry, self._odomCallback)
 
 ################# PUBLIC FUNCTION #########################
 
-    def initRobot(self):
-
+    def initRobot(self): #DONE
         success = self._loadMapInfo()
         if not success:
             rospy.logwarn("Fail to load map !")
@@ -50,14 +60,23 @@ class MyTurtlebot:
 
         return True
 
-    def waitForResult():
-        pass
+    def getGoalStatus(self): #DONE
+
+        status_id = str(self._move_base_client.get_state())
+        status = self._statusList[status_id]
+        
+        if status == "ACTIVE" or "PREEMPTED" or "SUCCEEDED" or "ABORTED" or "PREEMPTING":
+            return status,self._lastGoal
+        else:
+            return status,None
 
     def moveTo(self, location):  # DONE
         try:
             goal = self._goalList[location]
+            self._lastGoal = location
         except KeyError:
-            msg= "The location of the {} is not registed yet!".format(location)
+            msg = "The location of the {} is not registed yet!".format(
+                location)
             rospy.logwarn(msg)
             return False
 
@@ -155,7 +174,7 @@ class MyTurtlebot:
                 location["position"], location["orientation"])
         return True
 
-    def _odom_callback(self, odom_msg):  # DONE
+    def _odomCallback(self, odom_msg):  # DONE
 
         pose = geometry_msgs.msg.PoseStamped()
 
@@ -177,5 +196,5 @@ class MyTurtlebot:
 if __name__ == "__main__":
 
     myBot = MyTurtlebot()
-    
+
     rospy.spin()

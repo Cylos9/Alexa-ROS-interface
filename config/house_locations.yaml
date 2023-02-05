@@ -3,21 +3,36 @@ house_map:
   frame_id: "map"
   locations:
     # room locations
+    office_room:
+      name: "office room"
+      position: [-6.348, 3.131] # [x,y]
+      orientation: [0.0, 0.0, 0.0] # [roll,pitch,yaw]
+
     living_room:
       name: "living room"
-      position: [1.78, -0.34]
+      position: [-0.024,0.999]
       orientation: [0.0, 0.0, 0.0]
 
-    bedroom:
+    foyer: 
+      name: "foyer"    
+      position: [-0.707,0.706]
+      orientation: [0.0, 0.0, 0.0]
+
+    dining_room: 
+      name: "dining room"       
+      position: [4.659,1.289]
+      orientation: [0.0, 0.0, 0.0]
+
+    toilet: 
+      name: "toilet"     
+      position: [1.001,2.995]
+      orientation: [0.0, 0.0, 0.0]
+
+    bedroom: 
       name: "bedroom"
-      position: [0.1, 1.6]
+      position: [5.796,-4.342]
       orientation: [0.0, 0.0, 0.0]
-
-    toilet:
-      name: "toilet"
-      position: [1.02, 3.024]
-      orientation: [0.0, 0.0, 0.0]
-
+      
   areas:
     office_room: 
       name: "office room"
