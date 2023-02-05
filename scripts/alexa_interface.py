@@ -45,7 +45,7 @@ class MoveIntentHandler(AbstractRequestHandler):
         slots = handler_input.request_envelope.request.intent.slots
         location = slots['location'].value
         
-        success = my_turtlebot.moveTo(location)
+        success = my_turtlebot.move_to(location)
         
         if success:
             speech_text = "I'm heading over to the {}!".format(location)
@@ -66,7 +66,7 @@ class GetPositionIntentHandler(AbstractRequestHandler):
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
         
-        location = my_turtlebot.getRobotLocation()
+        location = my_turtlebot.get_robot_location()
         
         speech_text = "I'm in {} now !!".format(location)
         
@@ -123,7 +123,7 @@ skill_adapter.register(app=app, route="/")
 def createMyTurtlebot():
     global my_turtlebot 
     my_turtlebot = MyTurtlebot(disable_signals=True)
-    my_turtlebot.initRobot()
+    my_turtlebot.init_robot()
     rospy.spin()
     
 if __name__ == '__main__':
