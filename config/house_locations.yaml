@@ -10,12 +10,12 @@ house_map:
 
     living_room:
       name: "living room"
-      position: [-0.024,0.999]
+      position: [-3.088,1.015]
       orientation: [0.0, 0.0, 0.0]
 
     foyer: 
       name: "foyer"    
-      position: [-0.707,0.706]
+      position: [1.034,0.243]
       orientation: [0.0, 0.0, 0.0]
 
     dining_room: 
@@ -67,5 +67,5 @@ house_map:
     bedroom: 
       name: "bedroom"
       area:
-        x: [7.137 , 4.774]
+        x: [4.774 , 7.137]
         y: [-5.448 , -0.465]  
